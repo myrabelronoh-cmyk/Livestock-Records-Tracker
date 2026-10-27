@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livestock Records Tracker</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+<h1>Livestock Records Tracker</h1>
+
+<div class="form-card">
+<h3>Add Animal</h3>
+<input id="name" placeholder="Name e.g. Daisy">
+<input id="breed" placeholder="Breed e.g. Friesian">
+<input id="age" type="number" placeholder="Age">
+<select id="type">
+<option value="Cow">Cow</option>
+<option value="Goat">Goat</option>
+<option value="Sheep">Sheep</option>
+<option value="Chicken">Chicken</option>
+</select>
+<button id="addBtn">Add Animal</button>
+</div>
+
+<h3>All Records</h3>
+<div id="records">Loading...</div>
+</div>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
