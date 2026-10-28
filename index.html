@@ -1,52 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livestock Records Tracker</title>
+<title>Livestock Tracker - Dark Farm Edition</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app-container">
+<div class="app-layout">
+  <!-- SIDEBAR - No Health -->
   <aside class="sidebar">
-    <div>
-      <h1> Livestock Tracker</h1>
-      <ul>
-        <li><a class="active" href="#">Dashboard</a></li>
-        <li><a href="#">Animals</a></li>
-        <li><a href="#">Health</a></li>
-      </ul>
-    </div>
-    <div class="sidebar-footer">v1.0 • Dark Farm Edition</div>
+    <h2>Livestock Tracker</h2>
+    <nav>
+      <button class="nav-btn active">Dashboard</button>
+      <button class="nav-btn">Animals</button>
+    </nav>
+    <p class="version">v1.0 - Dark Farm Edition</p>
   </aside>
+
+  <!-- MAIN -->
   <main class="main-content">
-    <div id="feedback-message" class="hidden"></div>
-    <section class="form-section">
-      <h2>Add Animal</h2>
+    <section class="add-section">
+      <h3>Add Animal</h3>
       <div class="form-row">
         <div class="form-group"><label>Name</label><input id="name" placeholder="Daisy"></div>
         <div class="form-group"><label>Breed</label><input id="breed" placeholder="Friesian"></div>
       </div>
       <div class="form-row">
         <div class="form-group"><label>Age</label><input id="age" type="number" placeholder="3"></div>
-        <div class="form-group"><label>Type</label><select id="type"><option>Cow</option><option>Goat</option><option>Sheep</option><option>Chicken</option></select></div>
+        <div class="form-group"><label>Type</label>
+          <select id="type"><option>Cow</option><option>Goat</option><option>Sheep</option></select>
+        </div>
       </div>
       <button id="submit-btn">Add Animal</button>
+      <p id="feedback-message" class="hidden"></p>
     </section>
-    <section class="inventory-section">
-      <h2>All Records</h2>
-      <div id="livestock-list" class="livestock-grid">Loading...</div>
+
+    <section class="records-section">
+      <h3>All Records</h3>
+      <div id="livestock-list"></div>
     </section>
   </main>
+
+  <!-- DASHBOARD - Only Total, Avg Age, Last Added - NO Sick, NO Quarantine -->
   <aside class="dashboard">
-    <h2>Dashboard</h2>
-    <div class="stat-grid">
-      <div class="stat-card healthy"><h4>Total</h4><p id="total-count">0</p></div>
-      <div class="stat-card sick"><h4>Sick</h4><p>0</p></div>
-      <div class="stat-card quarantine"><h4>Quarantine</h4><p>0</p></div>
+    <h3>Dashboard</h3>
+    <div class="stats">
+      <div class="stat"><span>Total</span><strong id="total-count">0</strong></div>
+      <div class="stat"><span>Avg Age</span><strong id="avg-age">0</strong></div>
     </div>
-    <div class="stat-card"><h4>Last Added</h4><p id="last-added">None</p></div>
-    <div class="stat-card"><h4>Avg Age</h4><p id="avg-age">0</p></div>
+    <div class="last-added-box">
+      <span>Last Added</span>
+      <strong id="last-added">None</strong>
+    </div>
   </aside>
 </div>
 <script type="module" src="src/app.js"></script>
