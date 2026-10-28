@@ -1,44 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livestock Tracker</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Livestock Tracker - Dark Farm</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="app">
-  <aside class="sidebar">
-    <h2> Livestock<br>Tracker</h2>
-    <nav>
-      <a class="active">📊 Dashboard</a>
-      <a>Animals</a>
-    </nav>
-  </aside>
-  <main class="main">
-    <div class="card">
-      <h3>Add Animal</h3>
-      <div class="form-grid">
-        <input id="name" placeholder="Name eg Daisy">
-        <input id="breed" placeholder="Breed eg Friesian">
-        <input id="age" type="number" placeholder="Age">
-        <select id="type"><option>Cow</option><option>Goat</option><option>Sheep</option></select>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">Livestock Tracker</h2>
+      <nav>
+        <button class="nav-btn active">Dashboard</button>
+        <button class="nav-btn">Animals</button>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="card">
+        <h3>Add Animal</h3>
+        <form id="animalForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="name" placeholder="Daisy" required />
+            </div>
+            <div class="form-group">
+              <label>Breed</label>
+              <input type="text" id="breed" placeholder="Friesian" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" id="age" placeholder="3" required />
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select id="type">
+                <option value="Cow">Cow</option>
+                <option value="Goat">Goat</option>
+                <option value="Sheep">Sheep</option>
+                <option value="Chicken">Chicken</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn-add">Add Animal</button>
+        </form>
       </div>
-      <button id="addBtn">Add Animal</button>
-    </div>
-    <div class="card">
-      <h3>All Records</h3>
-      <div id="records" class="records-grid"></div>
-    </div>
-  </main>
-  <aside class="dash">
-    <div class="card"><h4>Dashboard</h4>
-      <div class="stat"><span>Total Animals</span><b id="total">0</b></div>
-      <div class="stat"><span>Average Age</span><b id="avg">0</b></div>
-      <div class="stat"><span>Last Added</span><b id="last">None</b></div>
-    </div>
-  </aside>
-</div>
-<script type="module" src="src/app.js"></script>
+
+      <div class="card">
+        <h3>All Records</h3>
+        <div id="records" class="records-grid"></div>
+      </div>
+    </main>
+
+    <!-- Right Dashboard -->
+    <aside class="dashboard">
+      <h3>Dashboard</h3>
+      <div class="stats">
+        <div class="stat">
+          <span>Total</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div class="stat">
+          <span>Avg Age</span>
+          <strong id="avgAge">0</strong>
+        </div>
+      </div>
+      <div class="last-added">
+        <span>Last Added</span>
+        <strong id="lastAdded">None</strong>
+      </div>
+    </aside>
+  </div>
+
+  <script src="src/app.js"></script>
 </body>
 </html>
