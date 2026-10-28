@@ -1,49 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Livestock Tracker</title>
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
-    <h3 style="color:#7ed957">Livestock Tracker</h3>
-    <div class="nav active">Dashboard</div>
-    <div class="nav">Animals</div>
+    <h2>🐄 Livestock<br>Tracker</h2>
+    <nav>
+      <a class="active">📊 Dashboard</a>
+      <a>🐄 Animals</a>
+      <a>⚙️ Settings</a>
+    </nav>
   </aside>
-
-  <main class="center">
-    <section class="card">
-      <h4>Add Animal</h4>
-      <div class="grid2">
-        <div><label>Name</label><input id="name" placeholder="Daisy"></div>
-        <div><label>Breed</label><input id="breed" placeholder="Friesian"></div>
+  <main class="main">
+    <div class="card">
+      <h3>Add Animal</h3>
+      <div class="form-grid">
+        <input id="name" placeholder="Name eg Daisy">
+        <input id="breed" placeholder="Breed eg Friesian">
+        <input id="age" type="number" placeholder="Age">
+        <select id="type"><option>Cow</option><option>Goat</option><option>Sheep</option></select>
       </div>
-      <div class="grid2">
-        <div><label>Age</label><input id="age" type="number" placeholder="3"></div>
-        <div><label>Type</label><select id="type"><option>Cow</option><option>Goat</option><option>Sheep</option></select></div>
-      </div>
-      <button id="submit-btn">Add Animal</button>
-      <p id="feedback-message" class="hidden"></p>
-    </section>
-
-    <section class="card">
-      <h4>All Records</h4>
-      <div id="livestock-list"></div>
-    </section>
-  </main>
-
-  <aside class="right">
-    <h4>Dashboard</h4>
-    <div class="dash-grid">
-      <div class="dash-box"><small>Total</small><b id="total-count">0</b></div>
-      <div class="dash-box"><small>Avg Age</small><b id="avg-age">0</b></div>
+      <button id="addBtn">Add Animal</button>
     </div>
-    <div class="dash-box" style="margin-top:12px;text-align:center"><small>Last Added</small><b id="last-added">None</b></div>
+    <div class="card">
+      <h3>All Records</h3>
+      <div id="records" class="records-grid"></div>
+    </div>
+  </main>
+  <aside class="dash">
+    <div class="card"><h4>Dashboard</h4>
+      <div class="stat"><span>Total Animals</span><b id="total">0</b></div>
+      <div class="stat"><span>Average Age</span><b id="avg">0</b></div>
+      <div class="stat"><span>Last Added</span><b id="last">None</b></div>
+    </div>
   </aside>
 </div>
-<script type="module" src="./src/app.js"></script>
+<script type="module" src="src/app.js"></script>
 </body>
 </html>
