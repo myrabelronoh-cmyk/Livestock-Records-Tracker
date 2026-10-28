@@ -7,25 +7,47 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-<h1>Livestock Records Tracker</h1>
-
-<div class="form-card">
-<h3>Add Animal</h3>
-<input id="name" placeholder="Name e.g. Daisy">
-<input id="breed" placeholder="Breed e.g. Friesian">
-<input id="age" type="number" placeholder="Age">
-<select id="type">
-<option value="Cow">Cow</option>
-<option value="Goat">Goat</option>
-<option value="Sheep">Sheep</option>
-<option value="Chicken">Chicken</option>
-</select>
-<button id="addBtn">Add Animal</button>
-</div>
-
-<h3>All Records</h3>
-<div id="records">Loading...</div>
+<div class="app-container">
+  <aside class="sidebar">
+    <div>
+      <h1> Livestock Tracker</h1>
+      <ul>
+        <li><a class="active" href="#">Dashboard</a></li>
+        <li><a href="#">Animals</a></li>
+        <li><a href="#">Health</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">v1.0 • Dark Farm Edition</div>
+  </aside>
+  <main class="main-content">
+    <div id="feedback-message" class="hidden"></div>
+    <section class="form-section">
+      <h2>Add Animal</h2>
+      <div class="form-row">
+        <div class="form-group"><label>Name</label><input id="name" placeholder="Daisy"></div>
+        <div class="form-group"><label>Breed</label><input id="breed" placeholder="Friesian"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Age</label><input id="age" type="number" placeholder="3"></div>
+        <div class="form-group"><label>Type</label><select id="type"><option>Cow</option><option>Goat</option><option>Sheep</option><option>Chicken</option></select></div>
+      </div>
+      <button id="submit-btn">Add Animal</button>
+    </section>
+    <section class="inventory-section">
+      <h2>All Records</h2>
+      <div id="livestock-list" class="livestock-grid">Loading...</div>
+    </section>
+  </main>
+  <aside class="dashboard">
+    <h2>Dashboard</h2>
+    <div class="stat-grid">
+      <div class="stat-card healthy"><h4>Total</h4><p id="total-count">0</p></div>
+      <div class="stat-card sick"><h4>Sick</h4><p>0</p></div>
+      <div class="stat-card quarantine"><h4>Quarantine</h4><p>0</p></div>
+    </div>
+    <div class="stat-card"><h4>Last Added</h4><p id="last-added">None</p></div>
+    <div class="stat-card"><h4>Avg Age</h4><p id="avg-age">0</p></div>
+  </aside>
 </div>
 <script type="module" src="src/app.js"></script>
 </body>

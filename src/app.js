@@ -1,46 +1,52 @@
 import { getAnimals, addAnimal, deleteAnimal } from "./api.js";
+import { calculateAverageAge, validateAnimal, showFeedback } from "./utils.js";
+import { createCard } from "./components/livestockCard.js";
 
-const recordsDiv = document.getElementById("records");
-const addBtn = document.getElementById("addBtn");
+const list = document.getElementById("livestock-list");
+const btn = document.getElementById("submit-btn");
 
-async function loadRecords(){
- recordsDiv.innerHTML = "Loading...";
- try{
-  const animals = await getAnimals();
-  if(!animals || animals.length === 0){
-   recordsDiv.innerHTML = "<p>No records yet. Add one!</p>";
-   return;
+async function load(){
+  list.innerHTML = "Loading...";
+  try{
+    const animals = await getAnimals();
+    document.getElementById("total-count").textContent = animals.length;
+    document.getElementById("avg-age").textContent = calculateAverageAge(animals).toFixed(1);
+    if(!animals.length){ list.innerHTML = "<p>No records yet</p>"; return; }
+    list.innerHTML = "";
+    animals.forEach(a => {
+      const card = createCard(a, async (id)=>{
+        await deleteAnimal(id);
+        showFeedback("Deleted","success");
+        load();
+      });
+      list.appendChild(card);
+    });
+  }catch(e){
+    list.innerHTML = `<p style="color:#ef5350">Error: ${e.message}</p>`;
   }
-  recordsDiv.innerHTML = animals.map(a=>`
-   <div class="record">
-    <span><strong>${a.name}</strong> - ${a.breed} (${a.type}, ${a.age} yrs)</span>
-    <button class="delete" onclick="window.deleteRecord('${a.id}')">Delete</button>
-   </div>
-  `).join("");
- }catch(err){
-  recordsDiv.innerHTML = `<p style="color:red">Failed to load: ${err.message}</p>`;
- }
 }
 
-window.deleteRecord = async (id)=>{
- await deleteAnimal(id);
- loadRecords();
-};
+window.del = async (id)=>{ await deleteAnimal(id); load(); };
 
-addBtn.addEventListener("click", async ()=>{
- const animal = {
-  id: Date.now().toString(),
-  name: document.getElementById("name").value,
-  breed: document.getElementById("breed").value,
-  age: document.getElementById("age").value,
-  type: document.getElementById("type").value
- };
- if(!animal.name || !animal.breed) return alert("Fill name and breed");
- await addAnimal(animal);
- document.getElementById("name").value="";
- document.getElementById("breed").value="";
- document.getElementById("age").value="";
- loadRecords();
+btn.addEventListener("click", async ()=>{
+  const animal = {
+    id: Date.now().toString(),
+    name: document.getElementById("name").value.trim(),
+    breed: document.getElementById("breed").value.trim(),
+    age: document.getElementById("age").value,
+    type: document.getElementById("type").value
+  };
+  if(!validateAnimal(animal)){
+    showFeedback("Fill name, breed, valid age","error");
+    return;
+  }
+  await addAnimal(animal);
+  document.getElementById("last-added").textContent = animal.name;
+  showFeedback(`Added ${animal.name}!`,"success");
+  document.getElementById("name").value="";
+  document.getElementById("breed").value="";
+  document.getElementById("age").value="";
+  load();
 });
 
-loadRecords();
+load();
